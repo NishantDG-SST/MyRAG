@@ -22,7 +22,7 @@ A simple web app that uploads a PDF or TXT file, chunks it, embeds it, stores th
 Open `http://localhost:3000` in your browser.
 
 ## Usage
-1. Upload a PDF or TXT document to create an index.
+1. Upload a PDF, TXT or CSV document to create an index.
 2. Ask questions, the response is grounded in retrieved chunks.
 
 ## Example
