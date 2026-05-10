@@ -24,3 +24,13 @@ Open `http://localhost:3000` in your browser.
 ## Usage
 1. Upload a PDF or TXT document to create an index.
 2. Ask questions, the response is grounded in retrieved chunks.
+
+## Example
+
+Uploaded paper is the "Attention is All you Need" paper
+
+Answers question in context correctly
+<img width="549" height="444" alt="Screenshot 2026-05-10 at 1 49 36 PM" src="https://github.com/user-attachments/assets/e6379e51-47dd-4e1c-bf5c-95462cbf01dc" />
+
+Questions out of Context cannot be answered
+<img width="544" height="369" alt="Screenshot 2026-05-10 at 1 52 22 PM" src="https://github.com/user-attachments/assets/fe521be3-daed-4e1f-997a-a3b8a814963e" />
