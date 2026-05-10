@@ -1,6 +1,7 @@
 import path from "path";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { TextLoader } from "langchain/document_loaders/fs/text";
+import { CSVLoader } from "@langchain/community/document_loaders/fs/csv";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { JinaEmbeddings } from "@langchain/community/embeddings/jina";
 import { QdrantVectorStore } from "@langchain/qdrant";
@@ -19,6 +20,9 @@ export function getLoader(filePath, originalName) {
   }
   if (ext === ".txt") {
     return new TextLoader(filePath);
+  }
+  if (ext === ".csv") {
+    return new CSVLoader(filePath);
   }
   return null;
 }

@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 import { v4 as uuidv4 } from "uuid";
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import { TextLoader } from "langchain/document_loaders/fs/text";
+import { CSVLoader } from "@langchain/community/document_loaders/fs/csv";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { JinaEmbeddings } from "@langchain/community/embeddings/jina";
 import { QdrantVectorStore } from "@langchain/qdrant";
@@ -40,6 +41,9 @@ function getLoader(filePath, originalName) {
   }
   if (ext === ".txt") {
     return new TextLoader(filePath);
+  }
+  if (ext === ".csv") {
+    return new CSVLoader(filePath);
   }
   return null;
 }
@@ -85,7 +89,7 @@ app.post("/api/ingest", upload.single("file"), async (req, res) => {
     const loader = getLoader(req.file.path, req.file.originalname);
     if (!loader) {
       await fs.unlink(req.file.path);
-      return res.status(400).json({ error: "Only PDF or TXT files are supported." });
+      return res.status(400).json({ error: "Only PDF, TXT, or CSV files are supported." });
     }
 
     const rawDocs = await loader.load();

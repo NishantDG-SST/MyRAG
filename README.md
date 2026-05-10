@@ -3,7 +3,7 @@
 A simple web app that uploads a PDF or TXT file, chunks it, embeds it, stores the vectors in Qdrant, and answers questions grounded in the uploaded document.
 
 ## Features
-- PDF and TXT ingestion
+- PDF, TXT, and CSV ingestion
 - Recursive chunking strategy (1000 chars, 200 overlap)
 - Jina AI embeddings + Qdrant vector store
 - Groq Llama 70B chat completion

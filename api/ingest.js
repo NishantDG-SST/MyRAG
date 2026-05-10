@@ -62,7 +62,7 @@ export default async function handler(req, res) {
     const loader = getLoader(filePath, originalName);
     if (!loader) {
       await safeUnlink(filePath);
-      res.status(400).json({ error: "Only PDF or TXT files are supported." });
+      res.status(400).json({ error: "Only PDF, TXT, or CSV files are supported." });
       return;
     }
 

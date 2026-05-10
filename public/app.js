@@ -20,7 +20,7 @@ if (storedDocumentId) {
 function updateUploadUI(file) {
   if (!file) {
     uploadDrop.classList.remove("has-file");
-    uploadTitle.textContent = "Drop a PDF/TXT here";
+    uploadTitle.textContent = "Drop a PDF/TXT/CSV here";
     uploadMeta.textContent = "or click to browse";
     return;
   }
