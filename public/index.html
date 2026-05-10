@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyRAG</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background"></div>
+    <div class="ticker">
+      <div class="ticker__track">
+        <span>MYRAG • GROUNDED ANSWERS • UPLOAD • RETRIEVE • SYNTHESIZE •</span>
+        <span>MYRAG • GROUNDED ANSWERS • UPLOAD • RETRIEVE • SYNTHESIZE •</span>
+      </div>
+    </div>
+    <main class="app">
+      <header class="hero">
+        <div class="hero__top">
+          <div class="brand">MyRAG</div>
+          <div class="hero__meta">RAG STUDIO / 2026</div>
+        </div>
+        <div class="hero__grid">
+          <div class="hero__tile hero__tile--wide">
+            <h1>Feel smart, stay grounded.</h1>
+            <p class="subtitle">Index any document and chat with citations you can trust.</p>
+            <div class="hero__cta">Upload. Retrieve. Answer.</div>
+          </div>
+          <div class="hero__tile hero__tile--stack">
+            <span class="tag">DOCUMENTS</span>
+            <p>PDF + TXT ingestion with chunked retrieval.</p>
+          </div>
+          <div class="hero__tile hero__tile--stack">
+            <span class="tag">VECTOR SEARCH</span>
+            <p>Qdrant-backed memory for every upload.</p>
+          </div>
+          <div class="hero__tile hero__tile--image">
+            <div class="hero__shape"></div>
+            <span class="hero__stamp">LIVE</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="panel" id="upload-panel">
+        <div class="panel__title">
+          <h2>1. Upload a document</h2>
+          <span class="panel__label">READY TO INDEX</span>
+        </div>
+        <p class="hint">PDF or TXT only. Each upload creates a new document ID.</p>
+        <form id="upload-form" class="upload-form">
+          <label class="upload-drop" for="file-input">
+            <span class="upload-title" id="upload-title">Drop a PDF/TXT here</span>
+            <span class="upload-meta" id="upload-meta">or click to browse</span>
+          </label>
+          <input type="file" id="file-input" accept=".pdf,.txt" />
+          <button type="submit" class="btn-primary">Index Document</button>
+        </form>
+        <div class="status" id="upload-status"></div>
+      </section>
+
+      <section class="panel" id="chat-panel">
+        <div class="panel__title">
+          <h2>2. Ask a question</h2>
+          <span class="panel__label">CONTEXT ONLY</span>
+        </div>
+        <div class="document-meta">
+          <span>Active Document ID:</span>
+          <span id="document-id">None</span>
+        </div>
+        <form id="question-form">
+          <textarea id="question-input" rows="4" placeholder="Ask a question about the document..."></textarea>
+          <button type="submit">Get Answer</button>
+        </form>
+        <div class="status" id="answer-status"></div>
+        <div class="answer" id="answer-box"></div>
+        <div class="sources" id="sources-box"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
