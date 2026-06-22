@@ -328,6 +328,52 @@ button:hover {
   line-height: 1.6;
 }
 
+.queries {
+  border: 2px dashed var(--line);
+  background: #fbfbf5;
+  padding: 14px 16px;
+}
+
+.queries:empty {
+  display: none;
+}
+
+.queries h3 {
+  margin: 0 0 10px;
+  font-size: 1.05rem;
+}
+
+.queries__rewrite {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+}
+
+.queries__rewrite span {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  margin-right: 6px;
+}
+
+.queries__label {
+  margin: 0 0 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.queries ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+  display: grid;
+  gap: 4px;
+  font-size: 0.92rem;
+}
+
 .sources h3 {
   margin: 8px 0 12px;
 }

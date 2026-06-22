@@ -10,6 +10,7 @@ const questionForm = document.getElementById("question-form");
 const questionInput = document.getElementById("question-input");
 const answerStatus = document.getElementById("answer-status");
 const answerBox = document.getElementById("answer-box");
+const queriesBox = document.getElementById("queries-box");
 const sourcesBox = document.getElementById("sources-box");
 
 const storedDocumentId = localStorage.getItem("documentId");
@@ -60,6 +61,36 @@ function setStatus(element, message, tone = "info") {
   element.dataset.tone = tone;
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
+
+// Show the query expansion the backend used: the cleaned-up "rewritten" query
+// plus the extra sub-queries it fanned out to (multi-query + RRF retrieval).
+function renderQueries(data) {
+  const queries = data.searchQueries || [];
+  if (!queries.length) {
+    queriesBox.innerHTML = "";
+    return;
+  }
+
+  const rewritten = data.rewrittenQuery || queries[0];
+  const subs = queries.slice(1);
+  const subsList = subs.length
+    ? `<p class="queries__label">Expanded into:</p><ul>${subs
+        .map((q) => `<li>${escapeHtml(q)}</li>`)
+        .join("")}</ul>`
+    : "";
+
+  queriesBox.innerHTML =
+    `<h3>How we searched</h3>` +
+    `<p class="queries__rewrite"><span>Rewritten query:</span> ${escapeHtml(rewritten)}</p>` +
+    subsList;
+}
+
 function renderSources(sources) {
   if (!sources.length) {
     sourcesBox.innerHTML = "";
@@ -89,6 +120,7 @@ uploadForm.addEventListener("submit", async (event) => {
 
   setStatus(uploadStatus, "Indexing document...", "info");
   answerBox.textContent = "";
+  queriesBox.innerHTML = "";
   sourcesBox.innerHTML = "";
 
   const formData = new FormData();
@@ -135,6 +167,7 @@ questionForm.addEventListener("submit", async (event) => {
 
   setStatus(answerStatus, "Searching...", "info");
   answerBox.textContent = "";
+  queriesBox.innerHTML = "";
   sourcesBox.innerHTML = "";
 
   try {
@@ -151,6 +184,7 @@ questionForm.addEventListener("submit", async (event) => {
     }
 
     answerBox.textContent = data.answer;
+    renderQueries(data);
     renderSources(data.sources || []);
     setStatus(answerStatus, "Answer ready.", "success");
   } catch (error) {
