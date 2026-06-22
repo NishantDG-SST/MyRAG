@@ -30,7 +30,7 @@ All three degrade gracefully: any LLM failure falls back to the previous behavio
 Open `http://localhost:3000` in your browser.
 
 ## Usage
-1. Upload a PDF, TXT, or CSV document to create an index.
+1. Upload a PDF, TXT or CSV document to create an index.
 2. Ask questions, the response is grounded in retrieved chunks.
 
 ## Example
